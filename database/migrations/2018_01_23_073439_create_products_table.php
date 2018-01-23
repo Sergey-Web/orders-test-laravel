@@ -19,11 +19,11 @@ class CreateProductsTable extends Migration
             $table->string('name', 50);
             $table->foreign('id_counterpaty')
                 ->references('id')
-                ->on('counterparties')
+                ->on('counterpaties')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
-            $table->float('price', 8, 2)->unsigned();
             $table->smallInteger('count')->unsigned();
+            $table->float('price', 8, 2)->unsigned();
             $table->timestamps();
         });
     }

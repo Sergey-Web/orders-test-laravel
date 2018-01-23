@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Counterpaty;
 
 class Product extends Model
 {
@@ -11,4 +12,9 @@ class Product extends Model
             'count',
             'price'
         ];
+
+    public function counterpaty()
+    {
+        return $this->belongsTo('App\Counterpaty', 'id_counterpaty', 'id');
+    }
 }

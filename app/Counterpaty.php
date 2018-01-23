@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Counterparty extends Model
+class Counterpaty extends Model
 {
     protected $fillable = [
             'type',
@@ -12,4 +12,9 @@ class Counterparty extends Model
             'phone',
             'email'
         ];
+
+    public function product()
+    {
+        return $this->hasOne('App\Product', 'id_counterpaty', 'id');
+    }
 }

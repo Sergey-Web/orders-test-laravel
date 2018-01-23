@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Product;
+use App\Counterpaty;
+use App\Helpers;
 
-class ProductController extends Controller
+class ProductsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +16,10 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        $page = request()->path();
+        $products = Product::with('counterpaty')->get()->toArray();
+
+        return view('product.index', ['products' => $products, 'page' => $page]);
     }
 
     /**
@@ -79,6 +85,7 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Product::destroy($id);
+        return redirect()->route('product.index')->with(['message' => 'DELETE']);
     }
 }

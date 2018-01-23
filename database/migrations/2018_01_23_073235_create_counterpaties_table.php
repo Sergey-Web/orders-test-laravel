@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCounterpartiesTable extends Migration
+class CreateCounterpatiesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateCounterpartiesTable extends Migration
      */
     public function up()
     {
-        Schema::create('counterparties', function (Blueprint $table) {
+        Schema::create('counterpaties', function (Blueprint $table) {
             $table->increments('id');
             $table->enum('type', ['provider', 'buyer']);
             $table->string('name', 50);
@@ -30,6 +30,6 @@ class CreateCounterpartiesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('counterparties');
+        Schema::dropIfExists('counterpaties');
     }
 }

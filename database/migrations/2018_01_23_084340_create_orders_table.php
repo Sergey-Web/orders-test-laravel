@@ -18,7 +18,7 @@ class CreateOrdersTable extends Migration
             $table->integer('id_counterpaty')->unsigned();
             $table->foreign('id_counterpaty')
                 ->references('id')
-                ->on('counterparties')
+                ->on('counterpaties')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
             $table->text('goods');

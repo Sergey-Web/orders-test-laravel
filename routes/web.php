@@ -12,6 +12,6 @@
 */
 
 Route::get('/', 'HomeController@index')->name('home');
-Route::resource('/products', 'ProductsController');
-Route::resource('/counterpaties', 'CounterpatiesController');
-Route::resource('/orders', 'OrdersController');
+Route::resource('/product', 'ProductsController');
+Route::resource('/counterpatie', 'CounterpatiesController');
+Route::resource('/order', 'OrdersController');
