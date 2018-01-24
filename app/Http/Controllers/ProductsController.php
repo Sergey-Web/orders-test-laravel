@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Product;
 use App\Counterpaty;
 use App\Helpers;
+use Validator;
 use App\Http\Requests\StoreProductRequest;
 
 class ProductsController extends Controller
@@ -34,7 +35,7 @@ class ProductsController extends Controller
     public function create()
     {
         $page = explode('/', request()->path());
-        $counterpaties = Counterpaty::pluck('name');
+        $counterpaties = Counterpaty::get(['id','name'])->toArray();
 
         return view('product.create', [
             'counterpaties' => $counterpaties,
@@ -50,7 +51,7 @@ class ProductsController extends Controller
      */
     public function store(StoreProductRequest $request)
     {
-        $dataProduct = Product::generateData($request);
+        $dataProduct = $request->except('_token');
         Product::create($dataProduct);
 
         return redirect()->route('product.index')->with(['message' => 'Add new product']);
@@ -75,7 +76,17 @@ class ProductsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $page = explode('/', request()->path());
+        $counterpaties = Counterpaty::get(['id','name'])->toArray();
+        $product = Product::with('counterpaty')
+            ->get(['id', 'id_counterpaty', 'name', 'count', 'price'])
+            ->where('id',$id)->first()->toArray();
+
+        return view('product.edit', [
+            'page'          => $page[0],
+            'product'       => $product,
+            'counterpaties' => $counterpaties 
+        ]);
     }
 
     /**
@@ -87,7 +98,17 @@ class ProductsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        Validator::make($request->all(), [
+                'name'        => 'required|unique:products,name,'.$id,
+                'count'       => 'required|numeric|min:1|max:10000',
+                'price'       => 'required|numeric|min:1|max:1000000000',
+                'id_counterpaty' => 'required'
+            ])->validate();
+
+        $dataProduct = $request->except(['_token', '_method']);
+        Product::find($id)->update($dataProduct);
+
+        return redirect()->route('product.index')->with(['message' => 'Update product']);
     }
 
     /**

@@ -10,28 +10,29 @@
     </ul>
 </div>
 @endif
-<form action="{{ route($page.'.store') }}" accept-charset="UTF-8" method="POST">
+<form action="{{ route($page.'.update', $product['id']) }}" accept-charset="UTF-8" method="POST">
     {{ csrf_field() }}
+    {{ method_field('PUT') }}
     <div class="form-group">
         <label for="nameProduct">Name product: </label>
-        <input type="text" class="form-control" name="name" id="nameProduct" value="{{ old('name') }}" placeholder="name">
+        <input type="text" class="form-control" name="name" id="nameProduct" value="{{ $product['name'] }}" placeholder="name">
     </div>
     <div class="form-group">
         <label for="countProduct">Count: </label>
-        <input type="text" class="form-control" name="count" id="countProduct" value="{{ old('count') }}" placeholder="count">
+        <input type="text" class="form-control" name="count" id="countProduct" value="{{ $product['count'] }}" placeholder="count">
     </div>
     <div class="form-group">
         <label for="priceProduct">Price: </label>
-        <input type="text" class="form-control" name ="price" id="priceProduct" value="{{ old('price') }}" placeholder="price">
+        <input type="text" class="form-control" name ="price" id="priceProduct" value="{{ $product['price'] }}" placeholder="price">
     </div>
     <select name="id_counterpaty" class="form-control">
         @foreach($counterpaties as $counterpaty)
-            @if(old('counterpaty') && old('counterpaty') == $counterpaty)
+            @if($counterpaty['id'] === $product['counterpaty']['id'])
             <option value="{{ $counterpaty['id'] }}" selected>{{ $counterpaty['name'] }}</option>
             @endif
             <option value="{{ $counterpaty['id'] }}">{{ $counterpaty['name'] }}</option>
         @endforeach
     </select>
-    <button type="submit" class="btn btn-success" href="#">Create</button>
+    <button type="submit" class="btn btn-success" href="#">Update</button>
 </form>
 @endsection

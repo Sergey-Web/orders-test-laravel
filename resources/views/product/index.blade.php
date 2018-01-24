@@ -25,6 +25,7 @@
             <th></th>
             <th></th>
         </tr>
+        @if($products)
         @foreach($products as $key => $product)
             <tr>
                 <td>{{ ++$key }}</td>
@@ -32,7 +33,7 @@
                 <td>{{ $product['counterpaty']['name'] }}</td>
                 <td>{{ $product['count'] }}</td>
                 <td>{{ $product['price'] }}</td>
-                <td><a class="btn btn-success" href="#">Edit</a></td>
+                <td><a class="btn btn-success" href="{{ route($page . '.edit', $product['id']) }}">Edit</a></td>
                 <td>
                     <form action="{{ route($page.'.destroy',  $product['id']) }}" accept-charset="UTF-8" method="POST">
                         {{ csrf_field() }}
@@ -42,6 +43,7 @@
                 </td>
             </tr>
         @endforeach
+        @endif
     </table>
     <a href="{{ route('product.create') }}" class="btn btn-primary">Add new product</a>
 @endsection

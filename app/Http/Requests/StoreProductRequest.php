@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class StoreProductRequest extends FormRequest
 {
@@ -25,9 +26,9 @@ class StoreProductRequest extends FormRequest
     {
         return [
             'name'        => 'required|unique:products,name',
-            'count'       => 'required|numeric|digits_between:1,5',
-            'price'       => 'required|numeric|digits_between:1,10',
-            'counterpaty' => 'required'
+            'count'       => 'required|numeric|min:1|max:10000',
+            'price'       => 'required|numeric|min:1|max:1000000000',
+            'id_counterpaty' => 'required'
         ];
     }
 }
