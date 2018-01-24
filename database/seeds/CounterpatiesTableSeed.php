@@ -14,35 +14,35 @@ class CounterpatiesTableSeed extends Seeder
     {
         Counterpaty::create([
             'type'  => 'provider',
-            'name'  => 'Counterpaty1',
+            'name'  => 'counterpaty1',
             'phone' => '380677799221',
             'email' => 'counterpaty1@gmail.com',
         ]);
 
         Counterpaty::create([
             'type'  => 'buyer',
-            'name'  => 'Counterpaty2',
+            'name'  => 'counterpaty2',
             'phone' => '380677799222',
             'email' => 'counterpaty2@gmail.com',
         ]);
 
         Counterpaty::create([
             'type'  => 'buyer',
-            'name'  => 'Counterpaty3',
+            'name'  => 'counterpaty3',
             'phone' => '380677799223',
             'email' => 'counterpaty3@gmail.com',
         ]);
 
         Counterpaty::create([
             'type'  => 'provider',
-            'name'  => 'Counterpaty4',
+            'name'  => 'counterpaty4',
             'phone' => '380677799224',
             'email' => 'counterpaty4@gmail.com',
         ]);
 
         Counterpaty::create([
             'type'  => 'provider',
-            'name'  => 'Counterpaty5',
+            'name'  => 'counterpaty5',
             'phone' => '380677799225',
             'email' => 'counterpaty5@gmail.com',
         ]);

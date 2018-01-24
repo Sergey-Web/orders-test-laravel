@@ -1,10 +1,18 @@
 @extends('layouts.index')
 
 @section('content')
-<div class="wrap-product">
     @if(session('message'))
     <div class="alert alert-success">
         <span>{{ session('message') }}</span>
+    </div>
+    @endif
+    @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
     </div>
     @endif
     <table class="table table-hover">
@@ -35,5 +43,5 @@
             </tr>
         @endforeach
     </table>
-</div>
+    <a href="{{ route('product.create') }}" class="btn btn-primary">Add new product</a>
 @endsection

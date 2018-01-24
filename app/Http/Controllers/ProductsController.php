@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Product;
 use App\Counterpaty;
 use App\Helpers;
+use App\Http\Requests\StoreProductRequest;
 
 class ProductsController extends Controller
 {
@@ -19,7 +20,10 @@ class ProductsController extends Controller
         $page = request()->path();
         $products = Product::with('counterpaty')->get()->toArray();
 
-        return view('product.index', ['products' => $products, 'page' => $page]);
+        return view('product.index', [
+            'products' => $products,
+            'page' => $page
+        ]);
     }
 
     /**
@@ -29,7 +33,13 @@ class ProductsController extends Controller
      */
     public function create()
     {
-        //
+        $page = explode('/', request()->path());
+        $counterpaties = Counterpaty::pluck('name');
+
+        return view('product.create', [
+            'counterpaties' => $counterpaties,
+            'page' => $page[0]
+        ]);
     }
 
     /**
@@ -38,9 +48,12 @@ class ProductsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreProductRequest $request)
     {
-        //
+        $dataProduct = Product::generateData($request);
+        Product::create($dataProduct);
+
+        return redirect()->route('product.index')->with(['message' => 'Add new product']);
     }
 
     /**
