@@ -3,9 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
-class StoreProductRequest extends FormRequest
+class StoreCounterpatyRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,10 +24,10 @@ class StoreProductRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'           => 'required|unique:products,name',
-            'count'          => 'required|numeric|min:1|max:10000',
-            'price'          => 'required|numeric|min:1|max:1000000000',
-            'id_counterpaty' => 'required'
+            'name'  => 'required',
+            'type'  => 'required|in:provider,buyer',
+            'phone' => 'required|min:12|max:12',
+            'email' => 'required|email'
         ];
     }
 }

@@ -3,9 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreCounterpatyRequest;
+use App\Product;
+use App\Counterpaty;
+use App\Helpers;
+use Validator;
 
-class CounterpatyController extends Controller
+class CounterpatiesController extends Controller
 {
+    static private $_types = ['provider', 'buyer'];
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +19,13 @@ class CounterpatyController extends Controller
      */
     public function index()
     {
-        //
+        $page = request()->path();
+        $counterpaties = Counterpaty::get(['id','name', 'type', 'phone', 'email'])->toArray();
+        
+        return view('counterpaty.index', [
+            'page'          => $page,
+            'counterpaties' => $counterpaties
+        ]);
     }
 
     /**
@@ -23,7 +35,11 @@ class CounterpatyController extends Controller
      */
     public function create()
     {
-        //
+        $page = explode('/', request()->path());
+        return view('counterpaty.create', [
+            'page' => $page[0],
+            'types' => self::$_types
+        ]);
     }
 
     /**
@@ -32,9 +48,12 @@ class CounterpatyController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreCounterpatyRequest $request)
     {
-        //
+        $dataCounterpaty = $request->except(['_token']);
+        Counterpaty::create($dataCounterpaty);
+
+        return redirect()->route('counterpaty.index', ['message' => 'Add new counterpaty']);
     }
 
     /**

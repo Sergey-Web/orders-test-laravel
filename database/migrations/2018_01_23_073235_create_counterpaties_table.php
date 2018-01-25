@@ -15,8 +15,8 @@ class CreateCounterpatiesTable extends Migration
     {
         Schema::create('counterpaties', function (Blueprint $table) {
             $table->increments('id');
-            $table->enum('type', ['provider', 'buyer']);
             $table->string('name', 50);
+            $table->enum('type', ['provider', 'buyer']);
             $table->string('phone', 15);
             $table->string('email', 50);
             $table->timestamps();

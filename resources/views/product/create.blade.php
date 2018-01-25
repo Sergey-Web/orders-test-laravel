@@ -25,12 +25,13 @@
         <input type="text" class="form-control" name ="price" id="priceProduct" value="{{ old('price') }}" placeholder="price">
     </div>
     <select name="id_counterpaty" class="form-control">
-        @foreach($counterpaties as $counterpaty)
-            @if(old('counterpaty') && old('counterpaty') == $counterpaty)
-            <option value="{{ $counterpaty['id'] }}" selected>{{ $counterpaty['name'] }}</option>
-            @endif
-            <option value="{{ $counterpaty['id'] }}">{{ $counterpaty['name'] }}</option>
-        @endforeach
+    @foreach($counterpaties as $counterpaty)
+        @if(old('id_counterpaty') && old('id_counterpaty') == $counterpaty['id'])
+        <option value="{{ $counterpaty['id'] }}" selected>{{ $counterpaty['name'] }}</option>
+        @continue
+        @endif
+        <option value="{{ $counterpaty['id'] }}">{{ $counterpaty['name'] }}</option>
+    @endforeach
     </select>
     <button type="submit" class="btn btn-success" href="#">Create</button>
 </form>

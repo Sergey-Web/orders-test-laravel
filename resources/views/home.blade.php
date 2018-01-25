@@ -20,7 +20,7 @@
 
         <div class="links">
             <a href="{{ route('product.index') }}">Products</a>
-            <a href="{{ route('counterpatie.index') }}">Counterpaties</a>
+            <a href="{{ route('counterpaty.index') }}">Counterpaties</a>
             <a href="{{ route('order.index') }}">Orders</a>
         </div>
     </div>

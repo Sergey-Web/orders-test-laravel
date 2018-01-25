@@ -23,7 +23,7 @@ class ProductsController extends Controller
 
         return view('product.index', [
             'products' => $products,
-            'page' => $page
+            'page'     => $page
         ]);
     }
 
@@ -39,7 +39,7 @@ class ProductsController extends Controller
 
         return view('product.create', [
             'counterpaties' => $counterpaties,
-            'page' => $page[0]
+            'page'          => $page[0]
         ]);
     }
 
@@ -99,9 +99,9 @@ class ProductsController extends Controller
     public function update(Request $request, $id)
     {
         Validator::make($request->all(), [
-                'name'        => 'required|unique:products,name,'.$id,
-                'count'       => 'required|numeric|min:1|max:10000',
-                'price'       => 'required|numeric|min:1|max:1000000000',
+                'name'           => 'required|unique:products,name,'.$id,
+                'count'          => 'required|numeric|min:1|max:10000',
+                'price'          => 'required|numeric|min:1|max:1000000000',
                 'id_counterpaty' => 'required'
             ])->validate();
 
