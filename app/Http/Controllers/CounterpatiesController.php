@@ -75,7 +75,14 @@ class CounterpatiesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $page = explode('/', request()->path());
+        $dataCounterpaty = Counterpaty::find($id)->toArray();
+
+        return view('counterpaty.edit', [
+            'counterpaty' => $dataCounterpaty,
+            'page'        => $page[0],
+            'types'       => self::$_types
+        ]);
     }
 
     /**
@@ -85,9 +92,12 @@ class CounterpatiesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreCounterpatyRequest $request, $id)
     {
-        //
+        $dataCounterpaty = $request->except(['_token', '_method']);
+        Counterpaty::find($id)->update($dataCounterpaty);
+
+        return redirect()->route('counterpaty.index', ['message' => 'Update Countepaty']);
     }
 
     /**
