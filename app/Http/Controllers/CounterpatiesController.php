@@ -108,6 +108,7 @@ class CounterpatiesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Counterpaty::destroy($id);
+        return redirect()->route('counterpaty.index')->with(['message' => 'DELETE']);
     }
 }
