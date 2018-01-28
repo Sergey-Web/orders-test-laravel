@@ -3,7 +3,7 @@
 use Illuminate\Database\Seeder;
 use App\Counterpaty;
 
-class CounterpatiesTableSeed extends Seeder
+class CounterpatiesTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.

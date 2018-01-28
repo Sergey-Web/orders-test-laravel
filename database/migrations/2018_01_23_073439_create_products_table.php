@@ -16,12 +16,12 @@ class CreateProductsTable extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('id_counterpaty')->unsigned();
-            $table->string('name', 50);
             $table->foreign('id_counterpaty')
                 ->references('id')
                 ->on('counterpaties')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
+            $table->string('name', 50);
             $table->smallInteger('count')->unsigned();
             $table->float('price', 8, 2)->unsigned();
             $table->timestamps();

@@ -15,6 +15,7 @@
         </ul>
     </div>
     @endif
+    <a href="/" class="btn btn-info">Back</a>
     <table class="table table-hover">
         <tr>
             <th>#</th>

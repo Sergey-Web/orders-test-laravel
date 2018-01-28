@@ -11,7 +11,7 @@
 </div>
 @endif
 <a href="/" class="btn btn-info">Back</a>
-<form action="{{ route($page.'.store') }}" accept-charset="UTF-8" method="POST">
+<form action="" accept-charset="UTF-8" method="POST">
     {{ csrf_field() }}
     <div class="form-group">
         <label for="nameProduct">Name product: </label>
@@ -25,15 +25,12 @@
         <label for="priceProduct">Price: </label>
         <input type="text" class="form-control" name ="price" id="priceProduct" value="{{ old('price') }}" placeholder="price">
     </div>
-    <select name="id_counterpaty" class="form-control">
-    @foreach($counterpaties as $counterpaty)
-        @if(old('id_counterpaty') && old('id_counterpaty') == $counterpaty['id'])
-        <option value="{{ $counterpaty['id'] }}" selected>{{ $counterpaty['name'] }}</option>
-        @continue
-        @endif
-        <option value="{{ $counterpaty['id'] }}">{{ $counterpaty['name'] }}</option>
-    @endforeach
-    </select>
+    <div class="products">
+        <select name="products" class="form-control">
+            
+        </select>
+        <button class="btn btn-warning">Ckeck</button>
+    </div>
     <button type="submit" class="btn btn-success" href="#">Create</button>
 </form>
 @endsection

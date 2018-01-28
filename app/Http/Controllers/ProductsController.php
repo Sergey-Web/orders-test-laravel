@@ -35,7 +35,7 @@ class ProductsController extends Controller
     public function create()
     {
         $page = explode('/', request()->path());
-        $counterpaties = Counterpaty::get(['id','name'])->toArray();
+        $counterpaties = Counterpaty::where('type', 'provider')->get(['id','name'])->toArray();
 
         return view('product.create', [
             'counterpaties' => $counterpaties,
@@ -77,7 +77,7 @@ class ProductsController extends Controller
     public function edit($id)
     {
         $page = explode('/', request()->path());
-        $counterpaties = Counterpaty::get(['id','name'])->toArray();
+        $counterpaties = Counterpaty::where('type', 'provider')->get(['id','name'])->toArray();
         $product = Product::with('counterpaty')
             ->get(['id', 'id_counterpaty', 'name', 'count', 'price'])
             ->where('id',$id)->first()->toArray();

@@ -3,6 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Product;
+use App\Counterpaty;
+use App\Helpers;
+use App\Order;
+use Validator;
 
 class OrdersController extends Controller
 {
@@ -13,7 +18,18 @@ class OrdersController extends Controller
      */
     public function index()
     {
-        //
+        return view('order.index');
+    }
+
+    public function counterpaties()
+    {
+        $type = key($_GET);
+        $counterpaties = Counterpaty::where('type', $type)->get(['id', 'name']);
+
+        return view('order.counterpaties', [
+            'type' => $type,
+            'counterpaties' => $counterpaties
+        ]);
     }
 
     /**
@@ -23,7 +39,10 @@ class OrdersController extends Controller
      */
     public function create()
     {
-        //
+        $idCounterpaty = request()->counterpaty;
+        //$products = Product::;
+
+        return view('order.create', ['id' => $idCounterpaty]);
     }
 
     /**

@@ -14,4 +14,5 @@
 Route::get('/', 'HomeController@index')->name('home');
 Route::resource('/product', 'ProductsController', ['exerpt' => ['show']]);
 Route::resource('/counterpaty', 'CounterpatiesController');
+Route::get('/order/counterpaties', 'OrdersController@counterpaties')->name('counterpaties');
 Route::resource('/order', 'OrdersController');

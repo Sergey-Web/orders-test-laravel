@@ -10,7 +10,7 @@
     </ul>
 </div>
 @endif
-
+<a href="/" class="btn btn-info">Back</a>
 <form action="{{ route($page.'.store') }}" accept-charset="UTF-8" method="POST">
     {{ csrf_field() }}
     <div class="form-group">

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateOrdersTable extends Migration
+class CreateStorageTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateOrdersTable extends Migration
      */
     public function up()
     {
-        Schema::create('orders', function (Blueprint $table) {
+        Schema::create('storage', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('id_counterpaty')->unsigned();
             $table->foreign('id_counterpaty')
@@ -21,9 +21,14 @@ class CreateOrdersTable extends Migration
                 ->on('counterpaties')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
-            $table->text('products');
-            $table->mediumInteger('count');
-            $table->float('price', 8, 2)->unsigned();
+            $table->integer('id_product')->unsigned();
+            $table->foreign('id_product')
+                ->references('id')
+                ->on('products')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+            $table->smallInteger('receipt');
+            $table->smallInteger('count')->unsigned();
             $table->timestamps();
         });
     }
@@ -35,6 +40,6 @@ class CreateOrdersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('orders');
+        Schema::dropIfExists('storage');
     }
 }

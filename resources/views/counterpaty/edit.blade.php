@@ -10,7 +10,7 @@
     </ul>
 </div>
 @endif
-
+<a href="/" class="btn btn-info">Back</a>
 <form action="{{ route($page.'.update', $counterpaty['id']) }}" accept-charset="UTF-8" method="POST">
     {{ csrf_field() }}
     {{ method_field('PUT') }}

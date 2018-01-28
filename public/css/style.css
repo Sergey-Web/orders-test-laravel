@@ -48,3 +48,16 @@ html, body {
 .m-b-md {
     margin-bottom: 30px;
 }
+
+.order-conteiner {
+    display: flex;
+    justify-content: center;
+}
+
+.order-conteiner__item {
+    margin: 10px;
+}
+
+.products {
+    display: flex;
+}
