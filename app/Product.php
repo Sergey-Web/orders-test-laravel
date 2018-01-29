@@ -18,4 +18,10 @@ class Product extends Model
     {
         return $this->belongsTo('App\Counterpaty', 'id_counterpaty', 'id');
     }
+
+    public function storage()
+    {
+        return $this->hasMany('App\Storage', 'id_product', 'id');
+    }
+
 }

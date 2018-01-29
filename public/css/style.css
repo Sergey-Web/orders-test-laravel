@@ -47,6 +47,7 @@ html, body {
 
 .m-b-md {
     margin-bottom: 30px;
+    text-align: center;
 }
 
 .order-conteiner {
@@ -58,6 +59,29 @@ html, body {
     margin: 10px;
 }
 
-.products {
+.form-order__counterpaties,
+.form-order__products {
     display: flex;
+}
+
+.content {
+    margin: 30px 20px;
+    text-align: left;
+}
+
+.form-order__count-price {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+}
+
+.count-price__count,
+.count-price__price {
+    max-width: 100px;
+    text-align: center;
+}
+
+.count-price__arrow {
+    font-size: 30px;
+    margin: 0 16px;
 }

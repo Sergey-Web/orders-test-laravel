@@ -21,7 +21,7 @@ class OrdersController extends Controller
         return view('order.index');
     }
 
-    public function counterpaties()
+/*    public function counterpaties()
     {
         $type = key($_GET);
         $counterpaties = Counterpaty::where('type', $type)->get(['id', 'name']);
@@ -30,7 +30,7 @@ class OrdersController extends Controller
             'type' => $type,
             'counterpaties' => $counterpaties
         ]);
-    }
+    }*/
 
     /**
      * Show the form for creating a new resource.
@@ -39,10 +39,15 @@ class OrdersController extends Controller
      */
     public function create()
     {
-        $idCounterpaty = request()->counterpaty;
-        //$products = Product::;
+        $type = key($_GET);
 
-        return view('order.create', ['id' => $idCounterpaty]);
+        $counterpaties = Counterpaty::where('type', $type)->get(['id', 'name']);
+        $idCounterpaty = request()->counterpaty;
+
+        return view('order.create', [
+            'id'            => $idCounterpaty,
+            'counterpaties' => $counterpaties
+        ]);
     }
 
     /**
@@ -99,5 +104,17 @@ class OrdersController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function getProducts()
+    {
+        $idCounterpaty = request()->id_;
+        $products = Product::with(['counterpaty', 'storage'])
+            ->where('id_counterpaty', $idCounterpaty)
+            ->get(['id', 'name', 'price'])
+            ->toArray();
+        $getProductStorage = Helpers::getProductStorage($products);
+
+        echo json_encode($getProductStorage);
     }
 }
