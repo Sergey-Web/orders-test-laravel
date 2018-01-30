@@ -11,13 +11,13 @@
 </div>
 @endif
 <a href="/" class="btn btn-info">Back</a>
-<form class="form-order" action="" accept-charset="UTF-8" method="POST">
+<form class="form-order" action="{{ route($page . '.store') }}" accept-charset="UTF-8" method="POST">
     {{ csrf_field() }}
     <div class="form-order__wrap-items">
         <div class="form-group">
             <label for="counterpaty">Counterpaties: </label>
             <div class="form-order__counterpaties">
-                <select id="counterpaty" name="counterpaty" class="form-control">
+                <select id="counterpaty" class="form-control">
                     @foreach($counterpaties as $counterpaty)
                     <option value="{{ $counterpaty['id'] }}">{{ $counterpaty['name'] }}</option>
                     @endforeach

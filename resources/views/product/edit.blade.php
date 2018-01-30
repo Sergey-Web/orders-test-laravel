@@ -19,10 +19,6 @@
         <input type="text" class="form-control" name="name" id="nameProduct" value="{{ $product['name'] }}" placeholder="name">
     </div>
     <div class="form-group">
-        <label for="countProduct">Count: </label>
-        <input type="text" class="form-control" name="count" id="countProduct" value="{{ $product['count'] }}" placeholder="count">
-    </div>
-    <div class="form-group">
         <label for="priceProduct">Price: </label>
         <input type="text" class="form-control" name ="price" id="priceProduct" value="{{ $product['price'] }}" placeholder="price">
     </div>

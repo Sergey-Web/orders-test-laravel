@@ -25,7 +25,7 @@ class OrdersSeeder extends Seeder
                         ]
                 ]),
             'count'          => 110,
-            'price'          => 15000,
+            'price'          => 15000
         ]);
 
         Order::create([

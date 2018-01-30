@@ -22,7 +22,6 @@ class CreateProductsTable extends Migration
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
             $table->string('name', 50);
-            $table->smallInteger('count')->unsigned();
             $table->float('price', 8, 2)->unsigned();
             $table->timestamps();
         });

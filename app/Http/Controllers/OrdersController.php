@@ -7,6 +7,7 @@ use App\Product;
 use App\Counterpaty;
 use App\Helpers;
 use App\Order;
+use DB;
 use Validator;
 
 class OrdersController extends Controller
@@ -21,17 +22,6 @@ class OrdersController extends Controller
         return view('order.index');
     }
 
-/*    public function counterpaties()
-    {
-        $type = key($_GET);
-        $counterpaties = Counterpaty::where('type', $type)->get(['id', 'name']);
-
-        return view('order.counterpaties', [
-            'type' => $type,
-            'counterpaties' => $counterpaties
-        ]);
-    }*/
-
     /**
      * Show the form for creating a new resource.
      *
@@ -40,12 +30,11 @@ class OrdersController extends Controller
     public function create()
     {
         $type = key($_GET);
-
         $counterpaties = Counterpaty::where('type', $type)->get(['id', 'name']);
-        $idCounterpaty = request()->counterpaty;
+        $page = explode('/', request()->path())[0];
 
         return view('order.create', [
-            'id'            => $idCounterpaty,
+            'page'          => $page,
             'counterpaties' => $counterpaties
         ]);
     }
@@ -58,7 +47,12 @@ class OrdersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $orders = Helpers::handlerOrderProviders($request->except('_token'));
+        for($count = 0; $count < count($orders); $count++) {
+            Order::create($orders[$count]);
+        }
+
+        return redirect()->route('order.index')->with(['message' => 'Create Order(s)']);
     }
 
     /**
@@ -108,10 +102,10 @@ class OrdersController extends Controller
 
     public function getProducts()
     {
-        $idCounterpaty = request()->id_;
+        $idCounterpaties = json_decode(request()->idCounterpaties);
         $products = Product::with(['counterpaty', 'storage'])
-            ->where('id_counterpaty', $idCounterpaty)
-            ->get(['id', 'name', 'price'])
+            ->whereIn('id_counterpaty', $idCounterpaties)
+            ->get()
             ->toArray();
         $getProductStorage = Helpers::getProductStorage($products);
 
