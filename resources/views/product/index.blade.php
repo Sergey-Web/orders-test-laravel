@@ -21,7 +21,6 @@
             <th>#</th>
             <th>Product</th>
             <th>Counterpaty</th>
-            <th>Count</th>
             <th>Price</th>
             <th></th>
             <th></th>
@@ -32,7 +31,6 @@
                 <td>{{ ++$key }}</td>
                 <td>{{ $product['name'] }}</td>
                 <td>{{ $product['counterpaty']['name'] }}</td>
-                <td>{{ $product['count'] }}</td>
                 <td>{{ $product['price'] }}</td>
                 <td><a class="btn btn-success" href="{{ route($page . '.edit', $product['id']) }}">Edit</a></td>
                 <td>

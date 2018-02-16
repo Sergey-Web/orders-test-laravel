@@ -79,7 +79,7 @@ class ProductsController extends Controller
         $page = explode('/', request()->path());
         $counterpaties = Counterpaty::where('type', 'provider')->get(['id','name'])->toArray();
         $product = Product::with('counterpaty')
-            ->get(['id', 'id_counterpaty', 'name', 'count', 'price'])
+            ->get(['id', 'id_counterpaty', 'name', 'price'])
             ->where('id',$id)->first()->toArray();
 
         return view('product.edit', [
@@ -100,7 +100,6 @@ class ProductsController extends Controller
     {
         Validator::make($request->all(), [
                 'name'           => 'required|unique:products,name,'.$id,
-                'count'          => 'required|numeric|min:1|max:10000',
                 'price'          => 'required|numeric|min:1|max:1000000000',
                 'id_counterpaty' => 'required'
             ])->validate();

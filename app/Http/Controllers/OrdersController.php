@@ -100,9 +100,10 @@ class OrdersController extends Controller
         //
     }
 
-    public function getProducts()
+    public function getProviders()
     {
         $idCounterpaties = json_decode(request()->idCounterpaties);
+
         $products = Product::with(['counterpaty', 'storage'])
             ->whereIn('id_counterpaty', $idCounterpaties)
             ->get()
@@ -111,4 +112,10 @@ class OrdersController extends Controller
 
         echo json_encode($getProductStorage);
     }
+
+    public function getProductsStorage()
+    {
+        echo json_encode(['test' => 'test']);
+    }
 }
+ 

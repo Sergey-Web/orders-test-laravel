@@ -15,33 +15,33 @@ class OrdersSeeder extends Seeder
         Order::create([
             'id_counterpaty' => 4,
             'products'       => serialize([
-                    8 => [
-                        'count' => 10,
-                        'price' => 5000
-                    ],
-                    9 => [
-                        'count' => 100,
-                        'price' => 10000
-                        ]
-                ]),
+                8 => [
+                    'count' => 10,
+                    'price' => 5000
+                ],
+                9 => [
+                    'count' => 100,
+                    'price' => 100000
+                ]
+            ]),
             'count'          => 110,
-            'price'          => 15000
+            'price'          => 150000
         ]);
 
         Order::create([
             'id_counterpaty' => 1,
             'products'       => serialize([
-                    1 => [
-                        'count' => 100,
-                        'price' => 10000
-                    ],
-                    2 => [
-                        'count' => 10,
-                        'price' => 2000
-                    ]
-                ]),
+                1 => [
+                    'count' => 100,
+                    'price' => 10000
+                ],
+                2 => [
+                    'count' => 10,
+                    'price' => 2000
+                ]
+            ]),
             'count'          => 110,
-            'price'          => 10200
+            'price'          => 12000
         ]);
 
         Order::create([
@@ -49,15 +49,15 @@ class OrdersSeeder extends Seeder
             'products'       => serialize([
                 9  => [
                     'count' => 20,
-                    'price' => 2000
+                    'price' => 20000
                 ],
                 12 => [
                     'count' => 2,
-                    'price' => 1000
+                    'price' => 2000
                 ]
             ]),
             'count'          => 22,
-            'price'          => 3000
+            'price'          => 22000
         ]);
 
         Order::create([
@@ -88,8 +88,8 @@ class OrdersSeeder extends Seeder
                         'price' => 400
                     ]
                 ]),
-            'count'          => 11,
-            'price'          => 1200
+            'count'          => 3,
+            'price'          => 500
         ]);
 
         Order::create([
@@ -113,11 +113,11 @@ class OrdersSeeder extends Seeder
                     ],
                     9 => [
                         'count' => 1,
-                        'price' => 200
+                        'price' => 1000
                     ]
                 ]),
-            'count'          => 11,
-            'price'          => 1200
+            'count'          => 3,
+            'price'          => 2000
         ]);
 
         Order::create([

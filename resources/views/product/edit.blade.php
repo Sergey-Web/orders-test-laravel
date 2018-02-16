@@ -26,6 +26,7 @@
         @foreach($counterpaties as $counterpaty)
             @if($counterpaty['id'] === $product['counterpaty']['id'])
             <option value="{{ $counterpaty['id'] }}" selected>{{ $counterpaty['name'] }}</option>
+            @continue
             @endif
             <option value="{{ $counterpaty['id'] }}">{{ $counterpaty['name'] }}</option>
         @endforeach

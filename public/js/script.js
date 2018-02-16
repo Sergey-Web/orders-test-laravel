@@ -7,12 +7,9 @@ $(document).ready(function() {
     var fullUrl = window.location.href;
     var orderCreate = fullUrl.slice(fullUrl.indexOf('?')+1,fullUrl.length);
 
-    if(orderCreate === 'provider') {
-        var checkCounterpaty = [];
-        var checkProduct = [];
+    if(orderCreate === 'buyer') {
         var idCounterpaties = [];
-        var pruducts;
-        var url = "products";
+        var products;
         var options = $('#counterpaty').find('option');
 
         if(options.length > 0) {
@@ -23,7 +20,34 @@ $(document).ready(function() {
 
         $.ajax({
             type: "POST",
-            url: url,
+            url: orderCreate,
+            data: "idCounterpaties=" + JSON.stringify(idCounterpaties),
+            success: function(res) {
+                 products = JSON.parse(res);
+                 console.log(products);
+            },
+            error: function(res) {
+                console.log('error');
+            }
+        });
+    }
+
+    if(orderCreate === 'provider') {
+        var checkCounterpaty = [];
+        var checkProduct = [];
+        var idCounterpaties = [];
+        var pruducts;
+        var options = $('#counterpaty').find('option');
+
+        if(options.length > 0) {
+            for(var count = 0; count < options.length; count++) {
+                idCounterpaties.push($(options[count]).val());
+            }
+        }
+
+        $.ajax({
+            type: "POST",
+            url: orderCreate,
             data: "idCounterpaties=" + JSON.stringify(idCounterpaties),
             success: function(res) {
                 products = JSON.parse(res);

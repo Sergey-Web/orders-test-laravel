@@ -14,5 +14,6 @@
 Route::get('/', 'HomeController@index')->name('home');
 Route::resource('/product', 'ProductsController', ['exerpt' => ['show']]);
 Route::resource('/counterpaty', 'CounterpatiesController');
-Route::post('/order/products', 'OrdersController@getProducts');
+Route::post('/order/provider', 'OrdersController@getProviders');
+Route::post('/order/buyer', 'OrdersController@getProductsStorage');
 Route::resource('/order', 'OrdersController');
